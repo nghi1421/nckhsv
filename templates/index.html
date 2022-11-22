@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+        <script rel="stylesheet" href="{{ url_for('static', filename='js/index.js') }}"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <title>Awesome Search Box</title>
+
+    </head>
+    <body>
+        <div class="search-box">
+            <form action="http://127.0.0.1:5000/predict" method="post">
+                <input class="search-txt" type="text" name="question" placeholder="Type to search">
+                <a class="search-btn" onclick="submit()">
+                    <i class="fas fa-search"></i>
+                </a>
+                <button id="bt" type="submit">click</button>
+            </form>
+        </div>
+        <script>
+            function submit() {
+                document.getElementById('bt').click();
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
+        <script src="{{ url_for('static', filename='js/result.js') }}"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <title>Awesome Search Box</title>
+        <style>
+            #title {
+                position: relative;
+                top:30%;
+                text-align: center;
+            }
+            .collapsible {
+              position:relative;
+              top:35%;
+              background-color: #777;
+              color: white;
+              cursor: pointer;
+              padding: 18px;
+              width: 100%;
+              border: none;
+              text-align: left;
+              outline: none;
+              font-size: 15px;
+
+            }
+
+            .active, .collapsible:hover {
+              background-color: #555;
+
+            }
+
+            .content {
+
+              position:relative;
+              top:35%;
+              padding: 0 18px;
+              max-height: 100%;
+              overflow: hidden;
+              transition: max-height 0.2s ease-out;
+              background-color: #f1f1f1;
+            }
+            #bt {
+                display:none;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="search-box">
+            <form action="http://127.0.0.1:5000/predict" method="post">
+                <input class="search-txt" type="text" name="question" placeholder="Type to search">
+                <a class="search-btn" onclick="submit()">
+                    <i class="fas fa-search"></i>
+                </a>
+                <button id="bt" type="submit">click</button>
+            </form>
+        </div>
+
+        <h1 id="title">Đáp án cho câu hỏi: {{question}}</h1>
+        {%for i in range(0,len)%}
+            <button type="button" class="collapsible">Câu trả lời {{i+1}}</button>
+            <div class="content">
+              <p>{{Pokemons[i]}}</p>
+            </div>
+        {%endfor%}
+
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+
+            for (i = 0; i < coll.length; i++) {
+              coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (!content.style.maxHeight){
+                  content.style.maxHeight = null;
+                } else {
+                  content.style.maxHeight = content.scrollHeight + "px";
+                }
+              });
+            }
+        </script>
+        <script>
+            function submit() {
+                document.getElementById('bt').click();
+            }
+        </script>
+    </body>
+</html>
